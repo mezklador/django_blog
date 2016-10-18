@@ -1,9 +1,9 @@
 # Django Blog 
 ## CFE tutorial on YT
 
-SEE: master app is in 'src -> trydjango' folder (settings.py)
+SEE: master app is in **'src/trydjango'** folder (settings.py)
 
-- **Blog app:** posts directory
+- **Blog app:** *src/posts* directory
     - dedicated templates
     - Class Based Views (CBV)
     - dedicated Uris
