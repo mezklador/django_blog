@@ -4,6 +4,7 @@
 {% load urlify %}
 {% load future_post %}
 
+{% block title %}| {{ object.title|truncatewords:6 }}{% endblock %}
 {% block content %}
 <!-- A single blog post -->
 <section class="post">
