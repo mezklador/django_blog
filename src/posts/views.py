@@ -21,6 +21,10 @@ FROM: http://stackoverflow.com/questions/27321692/override-a-django-generic-clas
 You can declare Form Class here for all CBV implied in forms
 """
 class PostForm(forms.ModelForm):
+
+    # little html select heleper in Form to choose each element of a date
+    published_at = forms.DateField(widget=forms.SelectDateWidget)
+
     """
     FROM: http://stackoverflow.com/questions/18738486/control-the-size-textarea-widget-look-in-django-admin#answer-18738715
     styling form fields
