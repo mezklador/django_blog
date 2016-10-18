@@ -1,0 +1,7 @@
+{% extends 'wrappers/front.html' %}
+
+{% block content %}
+<form method="POST">{% csrf_token %}
+    Etes-vous sûr de vouloir détruire l'article "{{ object  }}" ?
+    <input type="submit" value="Pour Sûr !" />
+{% endblock content %}

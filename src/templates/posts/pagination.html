@@ -1,0 +1,19 @@
+{# FROM: http://stackoverflow.com/questions/5907575/how-do-i-use-pagination-with-django-class-based-generic-listviews#answer-33485595 #}
+{% if is_paginated %}
+<ul class="pagination">
+	<!-- SEE: templates/posts/pagination.html -->
+{% if page_obj.has_previous %}
+    <li>
+		<span><a href="?page={{ page_obj.previous_page_number }}"><~</a></span>
+    </li>
+{% endif %}
+    <li class="">
+        <span>Page {{ page_obj.number }} / {{ page_obj.paginator.num_pages }}.</span>
+    </li>
+{% if page_obj.has_next %}
+    <li>
+		<span><a href="?page={{ page_obj.next_page_number }}{% if request.GET.s %}&s={{ request.GET.s }}{% endif %}">~></a></span>
+    </li>
+{% endif %}
+</ul>
+{% endif %}

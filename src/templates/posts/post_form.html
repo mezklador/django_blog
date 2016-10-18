@@ -1,0 +1,31 @@
+{% extends 'wrappers/back.html' %}
+
+{% block content %}
+{# because I don't like form.as_p or form.as_table #}
+{% if birth %}
+<h2>Nouvel article</h2>
+{% else %}
+<h2>Mise  à jour de <em>"{{ object.title|title }}"</em></h2>
+{% endif %}
+<form method="POST" enctype="multipart/form-data" class="pure-form">{% csrf_token %}
+    {#{ form.as_pure }#}
+    <!-- inside the form -->
+    <div class="pure-u-1-1">
+            {% for el in form %}
+        <fieldset>
+            <label for="{{ el.name }}">
+                <strong>{{ el.label }}</strong>
+                {{ el }}
+                <p class="errors">{{ el.errors }}</p>
+            </label>
+        </fieldset>
+        {#{ el }#}
+    {% endfor %}
+    </div>
+
+    <div class="pure-u-1-1">
+      <button type="submit" class="pure-button pure-button-primary">{{ bouton }}</button>
+     </div>
+</form>
+<!-- <pre>{#% filter force_escape %#}{#% debug %#}{#% endfilter %#}</pre> -->
+{% endblock content %}

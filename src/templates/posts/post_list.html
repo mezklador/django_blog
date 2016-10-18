@@ -1,0 +1,35 @@
+{% extends "wrappers/front.html" %}
+
+{% load future_post %}
+{% block content %}
+<form class="pure-form" action="" method="GET">
+    <input type="text" class="pure-input-layout pure-u-20-24" name="s" placeholder="Recherche..." value="{{ request.GET.s }}"/>
+    <button type="submit" class="pure-button pure-u-3-24">Rechercher</button>
+</form>
+{% for post in all_posts %}
+    <h1 class="content-subhead">Pinned Post</h1>
+    <!-- {{ post.title|slugify }} -->
+    <section class="post">
+        <header class="post-header">
+            <h2 class="post-title"><a href="{{ post.get_absolute_url }}">
+                    {% if post.draft %}<small style="color:red;">[Brouillon]</small> {% endif %}
+                    {% if post.published_at|future_post %}<small style="color:lightsteelblue">[Future]</small>{% endif %}
+                    {{ post.title}}
+                </a>
+            </h2>
+
+            <p class="post-meta">
+            Par <a href="#" class="post-author">{% if post.writer.get_full_name %}{{ post.writer.get_full_name|title }}{% else %}{{ post.writer|title }}{% endif %}</a> under <a class="post-category post-category-design" href="#">CSS</a> <a class="post-category post-category-pure" href="#">Pure</a>
+            </p>
+        </header>
+
+        <div class="post-description">
+            {% autoescape off %}
+                {{ post.content|truncatewords_html:25 }}
+            {% endautoescape %}
+        </div>
+    </section>
+{% endfor %}
+{# FROM: http://stackoverflow.com/questions/5907575/how-do-i-use-pagination-with-django-class-based-generic-listviews#answer-33485595 #}
+{% include 'posts/pagination.html' %}
+{% endblock content %}

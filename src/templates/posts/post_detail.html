@@ -1,0 +1,38 @@
+{% extends 'wrappers/front.html' %}
+
+{# my own template tags, below #}
+{% load urlify %}
+{% load future_post %}
+
+{% block content %}
+<!-- A single blog post -->
+<section class="post">
+    <header class="post-header">
+        {% if object.picture %}
+        <img src="{{ object.picture.url  }}" title="{{ object.title|lower }}" class="pure-img" />
+        {% endif %}
+        <h2 class="post-title">
+            {% if object.draft %}<small style="color: red;">[Brouillon]</small> {% endif%}
+            {% if object.published_at|future_post %}<small style="color: lightsteelblue;">[Future]</small> {% endif%}
+            {{ object.title}}
+        </h2>
+
+        <p class="post-meta">
+        Publié le <span class="post-author">{{ object.published_at|date:"d/m/Y" }}</span>,  mis à jour depuis {{ object.updated_at|timesince }}
+        </p>
+    </header>
+
+    <div class="post-description">
+        {% autoescape off %}
+        {{ object.content|linebreaksbr }}
+        {% endautoescape %}
+    </div>
+    <div class="social-networks-shares">
+        <a href="https://www.facebook.com/sharer/sharer.php?u={{ request.build_absolute_uri }}" target="_blank"><button class="pure-button button-small"><i class="fa fa-facebook-square"></i></button></a>
+        <a href="https://twitter.com/home?status={{ object.content|truncatechars:40|urlify }}%20{{ request.build_absolute_uri }}" target="_blank"><button class="pure-button button-small"><i class="fa fa-twitter-square"></i></button></a>
+        <a href="https://plus.google.com/share?url={{ request.build_absolute_uri }}" target="_blank"><button class="pure-button button-small"><i class="fa fa-google-plus-square"></i></button></a>
+        <a href="http://www.reddit.com/submit?url={{ request.build_absolute_uri }}" target="_blank"><button class="pure-button button-small"><i class="fa fa-reddit-square"></i></button></a>
+    </div>
+</section>
+
+{% endblock content %}
