@@ -1,4 +1,5 @@
 from django import forms
+from django.utils import timezone
 
 from .models import Post
 
@@ -9,8 +10,16 @@ You can declare Form Class here for all CBV implied in forms
 
 
 class PostForm(forms.ModelForm):
-    # little html select heleper in Form to choose each element of a date
-    published_at = forms.DateField(widget=forms.SelectDateWidget)
+    """
+    # AUTOMAGICALLY: little html select heleper in Form to choose each element of a date
+    # ADDITIONS:
+        - year's selector in a range of 5 years before today & 10 years after today
+        - default date in selector: today's timestamp
+    """
+    published_at = forms.DateField(
+        widget=forms.SelectDateWidget(years=range(timezone.now().year - 5, timezone.now().year + 10)),
+        initial=timezone.now().date()
+    )
 
     """
     FROM: http://stackoverflow.com/questions/18738486/control-the-size-textarea-widget-look-in-django-admin#answer-18738715
