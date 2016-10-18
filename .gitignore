@@ -95,6 +95,6 @@ ENV/
 media_cdn/*
 static_cdn/*
 env/*
-.DS_STORE
+.DS_Store
 .idea/*
 
