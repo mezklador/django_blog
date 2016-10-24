@@ -143,4 +143,4 @@ class BlogDeleteView(SuccessMessageMixin, DeleteView):
 
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
-        return super(BlogCreateView, self).dispatch(*args, **kwargs)
+        return super(BlogDeleteView, self).dispatch(*args, **kwargs)

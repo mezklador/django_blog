@@ -68,7 +68,7 @@ class Post(models.Model):
         #this call is defined by the namespace inside
         #the include(), in parent > urls.py
         return reverse("post_detail",
-                       kwargs={'pk': self.pk})
+                       kwargs={'slug': self.slug})
 
     class Meta:
         ordering = ['-created_at', '-updated_at']
