@@ -12,6 +12,7 @@
         {% if object.picture %}
         <img src="{{ object.picture.url  }}" title="{{ object.title|lower }}" class="pure-img" />
         {% endif %}
+        <h4 style="color: green;">Rubrique {{ post.categories.all | join:" | " | lower }}</h4>
         <h2 class="post-title">
             {% if object.draft %}<small style="color: red;">[Brouillon]</small> {% endif%}
             {% if object.published_at|future_post %}<small style="color: lightsteelblue;">[Future]</small> {% endif%}
