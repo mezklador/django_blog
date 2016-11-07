@@ -1,0 +1,21 @@
+{% extends "wrappers/front.html" %}
+
+{% block content %}
+{% for category in all_categories %}
+<section class="post">
+    <header class="post-header">
+        <h2 class="post-title">
+            <a href="{{ category.get_absolute_url }}">
+                {{ category.label }}
+            </a>
+        </h2>
+        <p class="post-meta">
+        Publié le {{ category.update_at }}
+        </p>
+    </header>
+    <div class="post-description">
+        {{ category.description|truncatewords_html:25 }}
+    </div>
+</section>
+{% endfor %}
+{% endblock %}

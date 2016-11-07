@@ -26,6 +26,7 @@ conflict)
 
 urlpatterns = [
     url(r'^posts/', include("posts.urls")),
+    url(r'^categories/', include("categories.urls")),
     url(r'^admin/', admin.site.urls),
 ]
 

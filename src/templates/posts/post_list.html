@@ -19,10 +19,10 @@
             </h2>
 
             <p class="post-meta">
-            Par <a href="#" class="post-author">{% if post.writer.get_full_name %}{{ post.writer.get_full_name|title }}{% else %}{{ post.writer|title }}{% endif %}</a> sous  
-            {% for cat in post.categories.all %}
-            <a class="post-category post-category-design" href="#">{{ cat.title }}</a>
-            {% endfor %}
+            Par <a href="#" class="post-author">{% if post.writer.get_full_name %}{{ post.writer.get_full_name|title }}{% else %}{{ post.writer|title }}{% endif %}</a>
+            {% if post.category.label %}
+            , dans la rubrique <a class="post-category post-category-design" href="{{ post.category.get_absolute_url }}">{{ post.category.label }}</a>
+            {% endif %}
             </p>
         </header>
 

@@ -1,0 +1,19 @@
+{% extends "wrappers/back.html" %}
+
+{% block content %}
+<h2>Nouvelle rubrique</h2>
+<form method="POST">{% csrf_token %}
+    <div class="pure-u-1-1">
+        {% for el in form %}
+            <fieldset>
+                <label for="{{ el.name }}">{{ el.label }}
+                {{ el }}
+                </label>
+            </fieldset>
+        {% endfor %}
+    </div>
+    <div class="pure-u-1-1">
+        <button type="submit" class="pure-button pure-button-primary">Enregistrer</button>
+    </div>
+</form>
+{% endblock %}

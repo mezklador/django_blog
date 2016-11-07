@@ -1,0 +1,27 @@
+{% extends 'wrappers/front.html' %}
+
+{% block title %}Category: {{ object.label }}{% endblock %}
+
+{% block content %}
+<section class="post">
+    <header class="post-header">
+        <h2 class="post-title">Category: {{ object.label }}</h2>
+        <p class="post-meta">
+        Publié le {{ object.updated_at }}
+        </p>
+    </header>
+    <div class="post-description">
+        {{ object.description }}
+        {# THIS IS HOW YOU'LL GET ALL RELATED CHILDREN FROM FOREIGN KEY #}
+        {% if object.articles.all %}
+        <hr/>
+        <p><strong>Liste des articles reliés :</strong></p>
+        <ol>
+        {% for article in object.articles.all %}
+            <li><a href="{{ article.get_absolute_url }}">{{ article.title }}</li>
+        {% endfor %}
+        {% endif %}
+        </ol>
+    </div>
+</section>
+{% endblock %}

@@ -5,18 +5,7 @@ from django.db.models.signals import pre_save
 from django.utils import timezone
 from django.utils.text import slugify
 
-class Category(models.Model):
-    title = models.CharField(max_length=120, verbose_name="rubrique")
-    description = models.TextField(blank=True)
-    slug = models.SlugField(unique=True)
-
-    def __str__(self):
-        return self.title
-
-    class Meta:
-        ordering = ('title',)
-        verbose_name_plural = "rubriques"
-        verbose_name = "rubrique"
+from categories.models import Category
 
 def upload_policy(instance, filename):
     """
@@ -62,7 +51,7 @@ class Post(models.Model):
                                     verbose_name="date de publication")
     created_at = models.DateTimeField(auto_now=False, auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True, auto_now_add=False)
-    categories = models.ManyToManyField(Category)
+    category = models.ForeignKey(Category, related_name='articles', null=True)
 
     # Link PostManager to the based-model
     ## CONVENTION: "objects" is the way this instance is called
@@ -110,4 +99,3 @@ def create_slug(instance, new_slug=None):
     return slug
 
 pre_save.connect(pre_save_post_receiver, Post)
-pre_save.connect(pre_save_post_receiver, Category)

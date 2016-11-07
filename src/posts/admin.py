@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Post, Category
+from .models import Post
 
 class PostModelAdmin(admin.ModelAdmin):
     class Meta:
@@ -9,9 +9,4 @@ class PostModelAdmin(admin.ModelAdmin):
     list_filter = ['created_at', 'updated_at']
     search_fields = ['title', 'content']
 
-class CategoryModelAdmin(admin.ModelAdmin):
-    class Meta:
-        model = Category
-
 admin.site.register(Post, PostModelAdmin)
-admin.site.register(Category, CategoryModelAdmin)
