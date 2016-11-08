@@ -34,7 +34,7 @@ class Post(models.Model):
     ## Get as Foreign Key the Auth Module of Django and set it with
     ## the first user inside its db (superuser, from the get-go)
     title = models.CharField(max_length=120, verbose_name="titre")
-    content = models.TextField(verbose_name="contenu")
+    content = models.TextField(verbose_name="contenu", max_length=2000)
     picture = models.ImageField(blank=True,
                                 null=True,
                                 verbose_name='image',

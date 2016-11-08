@@ -4,8 +4,8 @@ from django.db.models.signals import pre_save
 from django.utils.text import slugify
 
 class Category(models.Model):
-    label = models.CharField(max_length=200)
-    description = models.TextField()
+    label = models.CharField(max_length=200, unique=True)
+    description = models.TextField(max_length=550)
     slug = models.SlugField(unique=True)
     created_at = models.DateTimeField(auto_now=False, auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True, auto_now_add=False)
